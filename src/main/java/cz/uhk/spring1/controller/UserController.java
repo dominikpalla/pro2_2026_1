@@ -1,7 +1,9 @@
 package cz.uhk.spring1.controller;
 
 import cz.uhk.spring1.model.User;
+import cz.uhk.spring1.service.UserService;
 import org.jspecify.annotations.Nullable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,33 +16,28 @@ import java.util.ArrayList;
 @Controller
 public class UserController {
 
-    private ArrayList<User> users = new ArrayList<>();
+    private UserService userService;
 
-    public UserController(){
-        User user = new User();
-        user.setId(1);
-        user.setName("Karel");
-        users.add(user);
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/users/")
     public String list(Model model){
-        model.addAttribute("users", users);
+        model.addAttribute("users", userService.getAllUsers());
         return "users_list";
     }
 
     @GetMapping("/users/{id}")
     public String detail(@PathVariable int id, Model model){
-        model.addAttribute("user", findUserById(id));
+        model.addAttribute("user", userService.getUser(id));
         return "users_detail";
     }
 
     @GetMapping("/users/{id}/delete")
     public String delete(@PathVariable int id){
-        User user = findUserById(id);
-        if(user != null){
-            users.remove(user);
-        }
+        userService.deleteUser(id);
         return "redirect:/users/";
     }
 
@@ -52,7 +49,7 @@ public class UserController {
 
     @GetMapping("/users/{id}/edit")
     public String edit(@PathVariable int id, Model model){
-        User user = findUserById(id);
+        User user = userService.getUser(id);
         if(user != null){
             model.addAttribute("user", user);
             return "users_edit";
@@ -63,32 +60,8 @@ public class UserController {
 
     @PostMapping("/users/save")
     public String save(@ModelAttribute User user){
-        if(user != null){
-            if(user.getId() == 0){
-                int id = 1;
-                if(!users.isEmpty()){
-                    id = users.get(users.size()-1).getId()+1;
-                }
-                user.setId(id);
-                users.add(user);
-            }else{
-                User u = findUserById(user.getId());
-                if(u != null){
-                    u.setName(user.getName());
-                    u.setPassword(user.getPassword());
-                }
-            }
-        }
+        userService.saveUser(user);
         return "redirect:/users/";
-    }
-
-    private User findUserById(int id) {
-        for (User user : users) {
-            if (user.getId() == id) {
-                return user;
-            }
-        }
-        return null;
     }
 
 }
