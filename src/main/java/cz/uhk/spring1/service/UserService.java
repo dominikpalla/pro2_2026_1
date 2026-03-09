@@ -4,11 +4,12 @@ import cz.uhk.spring1.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public interface UserService {
     void saveUser(User user);
-    User getUser(int id);
-    void deleteUser(int id);
-    ArrayList<User> getAllUsers();
+    User getUser(long id);
+    void deleteUser(long id);
+    List<User> getAllUsers();
 }
