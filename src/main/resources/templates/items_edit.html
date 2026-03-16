@@ -11,8 +11,7 @@
 <form method="post" th:action="@{/items/save}" th:object="${item}">
 <input type="hidden" th:field="*{id}">
 <b>Name: </b> <input type="text" th:field="*{name}"> <br>
-<b>Password: </b> <input type="password" th:field="*{password}"> <br>
-<b>Email: </b> <input type="text" th:field="*{email}"> <br>
+<b>Desription: </b> <input type="text" th:field="*{description}"> <br>
 <input type="submit" value="Save">
 </form>
 </body>

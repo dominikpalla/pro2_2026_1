@@ -9,7 +9,7 @@
 <a th:href="@{/}">Back to the List of all Items</a>
 <br><br>
 <b>Name: </b> <span th:text="${item.name}"></span> <br>
-<b>Email: </b> <span th:text="${item.email}"></span> <br>
+<b>Description: </b> <span th:text="${item.description}"></span> <br>
 <a th:href="@{'/items/' + ${item.id} + '/edit'}">Edit Item</a><br>
 <a th:href="@{'/items/' + ${item.id} + '/delete'}">Delete Item</a>
 </body>
