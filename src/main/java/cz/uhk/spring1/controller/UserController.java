@@ -32,6 +32,7 @@ public class UserController {
     @GetMapping("/users/{id}")
     public String detail(@PathVariable int id, Model model){
         model.addAttribute("user", userService.getUser(id));
+        model.addAttribute("userDTO", userService.getUserDTO("me@me.com"));
         return "users_detail";
     }
 

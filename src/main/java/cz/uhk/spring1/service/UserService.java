@@ -1,6 +1,8 @@
 package cz.uhk.spring1.service;
 
 import cz.uhk.spring1.model.User;
+import cz.uhk.spring1.model.dto.UserBasicsDTO;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,4 +14,6 @@ public interface UserService {
     User getUser(long id);
     void deleteUser(long id);
     List<User> getAllUsers();
+
+    UserBasicsDTO getUserDTO(String mail);
 }
