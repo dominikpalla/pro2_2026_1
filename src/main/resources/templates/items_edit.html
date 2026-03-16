@@ -12,6 +12,11 @@
 <input type="hidden" th:field="*{id}">
 <b>Name: </b> <input type="text" th:field="*{name}"> <br>
 <b>Desription: </b> <input type="text" th:field="*{description}"> <br>
+
+<select th:field="*{user}">
+<option th:each="user: ${users}" th:text="${user.name}" th:value="${user.id}"></option>
+</select>
+
 <input type="submit" value="Save">
 </form>
 </body>

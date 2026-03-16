@@ -10,6 +10,7 @@
 <br><br>
 <b>Name: </b> <span th:text="${item.name}"></span> <br>
 <b>Description: </b> <span th:text="${item.description}"></span> <br>
+<b>User (owner): </b> <span th:text="${item.user.name}"></span> <br>
 <a th:href="@{'/items/' + ${item.id} + '/edit'}">Edit Item</a><br>
 <a th:href="@{'/items/' + ${item.id} + '/delete'}">Delete Item</a>
 </body>
