@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Detail of the User</title>
+    <title>Detail of the Item</title>
 </head>
 <body>
-<h1>Detail of the User</h1>
-<a th:href="@{/}">Back to the List of all Users</a>
+<h1>Detail of the Item</h1>
+<a th:href="@{/}">Back to the List of all Items</a>
 <br><br>
-<form method="post" th:action="@{/users/save}" th:object="${user}">
+<form method="post" th:action="@{/items/save}" th:object="${item}">
 <input type="hidden" th:field="*{id}">
 <b>Name: </b> <input type="text" th:field="*{name}"> <br>
 <b>Password: </b> <input type="password" th:field="*{password}"> <br>

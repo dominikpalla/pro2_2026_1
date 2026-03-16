@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of all Items</title>
+</head>
+<body>
+<h1>List of All Items</h1>
+<a th:href="@{/}">Back to Home page</a><br><br>
+<a th:href="@{/items/create}">Create a New Item</a>
+<ul>
+    <li th:each="item: ${items}">
+        <a th:text="${item.name}" th:href="@{'/items/' + ${item.id}}"></a>
+    </li>
+</ul>
+</body>
+</html>
