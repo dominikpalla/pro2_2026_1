@@ -11,7 +11,13 @@
 <form method="post" th:action="@{/users/save}" th:object="${user}">
 <input type="hidden" th:field="*{id}">
 <b>Name: </b> <input type="text" th:field="*{name}"> <br>
+<b>Username: </b> <input type="text" th:field="*{username}"> <br>
 <b>Password: </b> <input type="password" th:field="*{password}"> <br>
+<b>Role: </b>
+    <select th:field="*{role}">
+        <option value="USER">User</option>
+        <option value="ADMIN">Admin</option>
+    </select><br>
 <b>Email: </b> <input type="text" th:field="*{email}"> <br>
 <input type="submit" value="Save">
 </form>

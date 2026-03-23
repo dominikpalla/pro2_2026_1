@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Index Page</title>
 </head>
 <body>
 <h1>My First Spring Boot Application</h1>
+<span sec:authentication="name">User</span><br><br>
+
 <a th:href="@{/users/}">List of all Users</a><br>
-<a th:href="@{/items/}">List of all Items</a><br>
+<a th:href="@{/items/}">List of all Items</a><br><br><br>
+
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">Admin Panel</a>
+<br><br>
+<a th:href="@{/logout}">Logout</a>
 </body>
 </html>
