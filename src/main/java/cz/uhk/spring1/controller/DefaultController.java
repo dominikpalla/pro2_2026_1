@@ -1,14 +1,27 @@
 package cz.uhk.spring1.controller;
 
+import cz.uhk.spring1.service.WeatherService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class DefaultController {
 
+    private WeatherService weatherService;
+
+    @Autowired
+    public DefaultController(WeatherService weatherService) {
+        this.weatherService = weatherService;
+    }
+
     @GetMapping("/")
-    public String index(){
+    public String index(Model model) {
+        String temp = weatherService.getTemp("Hradec Králové");
+        System.out.println(temp);
+        model.addAttribute("temp", temp);
         return "index";
     }
 
